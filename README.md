@@ -7,24 +7,24 @@ This requires docker, java8 and gradlew.
 
 To run locally, execute: 
 
-´´´
+```
 ./run.sh
 
-´´
+```
 
 to stop the app, run :
 
-´´´
+```
 docker-compose down
-´´
+```
 
 To generate coverage Report
 
-´´´
+```
 
  ./gradlew build jacocoTestReport
 
-´´´
+```
 
 
 This will execute the app build (includes tests using an h2 db, and code checks pmd and checkstyle), then it will
