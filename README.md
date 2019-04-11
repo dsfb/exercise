@@ -69,5 +69,6 @@ http://localhost:8080/file/{fileId}/version/{version}/
 * Test are leaving trash on app dir
 * CI on TravisCI with a hook on github for PRs will be great
 * Including Swagger can be nice
+* build it's not failing if gradlew fails, it should
 
 
