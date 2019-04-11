@@ -1,0 +1,69 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.4.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: "jacoco"
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+apply plugin: 'checkstyle'
+apply plugin: "pmd"
+apply plugin: 'jacoco'
+
+checkstyle {
+	toolVersion = '7.5'
+	configFile = file("${project.rootDir}/config/checkstyle/checkstyle.xml")
+}
+
+pmd {
+	rulePriority = 3
+	consoleOutput = false
+	toolVersion = '5.5.5'
+	sourceSets = [sourceSets.main]
+	ruleSetFiles = files("${project.rootDir}/config/pmd/ruleset.xml")
+}
+
+group = 'com.metadata.exercise'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-jersey'
+	implementation 'org.flywaydb:flyway-core'
+	compileOnly 'org.projectlombok:lombok'
+	compile "io.springfox:springfox-bean-validators:2.9.2"
+	compile "io.springfox:springfox-swagger-ui:2.9.2"
+	compile "io.springfox:springfox-swagger2:2.9.2"
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
+	runtime('org.springframework.boot:spring-boot-devtools')
+	runtime('mysql:mysql-connector-java')
+	testCompile('com.h2database:h2')
+	testCompile('org.springframework.boot:spring-boot-starter-aop')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.mockito:mockito-core:2.7.22')
+	testCompile('org.apache.httpcomponents:httpclient:4.5.3')
+}

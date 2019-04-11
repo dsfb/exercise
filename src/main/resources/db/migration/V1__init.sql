@@ -1,0 +1,15 @@
+CREATE TABLE file (
+  id BIGINT(20) UNSIGNED NOT NULL  PRIMARY KEY AUTO_INCREMENT,
+  created_dt    DATETIME NOT NULL,
+  updated_dt    DATETIME
+);
+
+CREATE TABLE version (
+  id            BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  file_id       BIGINT(20) UNSIGNED NOT NULL,
+  url VARCHAR(256) NOT NULL,
+  created_dt    DATETIME NOT NULL,
+  updated_dt    DATETIME,
+  active        TINYINT(1) NOT NULL,
+  FOREIGN KEY (file_id) REFERENCES file (id)
+);

@@ -1,0 +1,28 @@
+version: '3'
+services:
+  server:
+    container_name: spring-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/exercise?useUnicode=true&characterEncoding=utf8&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
+    restart: always
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: docker-mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: exercise
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    restart: always
+
